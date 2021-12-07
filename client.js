@@ -41,6 +41,42 @@ const employees = [
 
 console.log( employees );
 
+// Loop over the employees array
+for ( let employee of employees ) {
+  console.log('employee inside for loop', employee );
+  let bonusInfo = getBonusInfo( employee );
+  console.log( `Bonus info for ${employee.name}`, bonusInfo );
+}
+
+function getBonusInfo( employee ) {
+  let bonusPercentage;
+  if ( employee.reviewRating <= 2 ) {
+    bonusPercentage = 0;
+  }
+  else if ( employee.reviewRating === 3 ) {
+    bonusPercentage = 0.04;
+  }
+  else if ( employee.reviewRating === 4 ){
+    bonusPercentage = 0.06;
+  }
+  else if ( employee.reviewRating === 5 ) {
+    bonusPercentage = 0.10;
+  }
+  if ( employee.employeeNumber > 999 ) {
+    bonusPercentage += 0.05;
+  }
+  console.log('bonus percentage', bonusPercentage);
+  return {
+    name: employee.name,
+    bonusPercentage: bonusPercentage,
+
+  };
+}
+
+
+
+/*
+
 function NewEmployeeObject( array ){
   for ( let employee of array ) {
     this.name = employee.name;
@@ -49,6 +85,8 @@ function NewEmployeeObject( array ){
     this.totalBonus = employee.bonusPercentage * employee.annualSalary;
   }
 } 
+
+console.log( NewEmployeeObject( employees ) );
 
 function calculateBonus ( employee ) {
     let bonusPercentage = 0;
@@ -64,7 +102,7 @@ function calculateBonus ( employee ) {
     else if ( employee.reviewRating === 5 ) {
       bonusPercentage = 0.1;
     }
-    if ( employee.employeeNumber.length > 4 ) {
+    if ( employee.employeeNumber > 999 ) {
       bonusPercentage += 0.05;
     }
     if ( employee.annualSalary > 65000 ) {
@@ -80,4 +118,4 @@ function calculateBonus ( employee ) {
     return bonusPercentage;
 }
 
-
+*/
