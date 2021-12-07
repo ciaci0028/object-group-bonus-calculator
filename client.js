@@ -43,7 +43,6 @@ console.log( employees );
 
 // Loop over the employees array
 for ( let employee of employees ) {
-  console.log('employee inside for loop', employee );
   let bonusInfo = getBonusInfo( employee );
   console.log( `Bonus info for ${employee.name}`, bonusInfo );
 }
@@ -67,12 +66,10 @@ function getBonusInfo( employee ) {
   // because more than 4 digits means 15+ years of service
    if ( employee.employeeNumber.toString().length === 4 ) {
     bonusPercentage += 0.05;
-    console.log( employee.name, 'got the bonus' );
   }
   // Take away 1% of bonus if their salary is over 65,000
   if ( employee.annualSalary > 65000 ){
     bonusPercentage -= 0.01;
-    console.log( employee.name, 'got docked' );
   }
   // Cap bonus at 13% and above zero
    if ( bonusPercentage > 0.13 ) {
@@ -90,11 +87,10 @@ function getBonusInfo( employee ) {
   return {
     name: employee.name,
     bonusPercentage: bonusPercentage,
-    
+    totalCompensation: Number(employee.annualSalary) + Number(employee.annualSalary * bonusPercentage),
+    totalBonus: Math.round(Number(employee.annualSalary * bonusPercentage)),
   };
 }
-
-
 
 /*
 
