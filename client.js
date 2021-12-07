@@ -48,6 +48,7 @@ for ( let employee of employees ) {
   console.log( `Bonus info for ${employee.name}`, bonusInfo );
 }
 
+// Figure out bonus percentage based on employee rating
 function getBonusInfo( employee ) {
   let bonusPercentage;
   if ( employee.reviewRating <= 2 ) {
@@ -62,14 +63,34 @@ function getBonusInfo( employee ) {
   else if ( employee.reviewRating === 5 ) {
     bonusPercentage = 0.10;
   }
-  if ( employee.employeeNumber > 999 ) {
+  // Modify the bonus based on employee number
+  // because more than 4 digits means 15+ years of service
+   if ( employee.employeeNumber.toString().length === 4 ) {
     bonusPercentage += 0.05;
+    console.log( employee.name, 'got the bonus' );
   }
-  console.log('bonus percentage', bonusPercentage);
+  // Take away 1% of bonus if their salary is over 65,000
+  if ( employee.annualSalary > 65000 ){
+    bonusPercentage -= 0.01;
+    console.log( employee.name, 'got docked' );
+  }
+  // Cap bonus at 13% and above zero
+   if ( bonusPercentage > 0.13 ) {
+    bonusPercentage = 0.13;
+  }
+  if ( bonusPercentage < 0 ) {
+    bonusPercentage = 0;
+  } 
+
+  /*
+  bonusPercentage = Math.min( bonusPercentage, 0.13);
+  bonusPercentage = Math.max( bonusPercentage, 0);
+  */
+
   return {
     name: employee.name,
     bonusPercentage: bonusPercentage,
-
+    
   };
 }
 
