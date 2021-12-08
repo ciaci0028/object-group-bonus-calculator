@@ -41,12 +41,6 @@ const employees = [
 
 console.log( employees );
 
-// Loop over the employees array
-for ( let employee of employees ) {
-  let bonusInfo = getBonusInfo( employee );
-  console.log( `Bonus info for ${employee.name}`, bonusInfo );
-}
-
 // Figure out bonus percentage based on employee rating
 function getBonusInfo( employee ) {
   let bonusPercentage;
@@ -90,6 +84,21 @@ function getBonusInfo( employee ) {
     totalCompensation: Number(employee.annualSalary) + Number(employee.annualSalary * bonusPercentage),
     totalBonus: Math.round(Number(employee.annualSalary * bonusPercentage)),
   };
+}
+
+$(document).ready( onReady );
+
+
+
+function onReady ( ) {
+  // Loop over the employees array
+for ( let employee of employees ) {
+  let bonusInfo = getBonusInfo( employee );
+  console.log( `Bonus info for ${employee.name}`, bonusInfo );
+  // Do some Jquery to render to the DOM
+  $('#employees').append( `<li> ${employee.name} currently earns $${employee.annualSalary} and 
+  earned a ${bonusInfo.bonusPercentage * 100}%, totaling $${bonusInfo.totalCompensation} </li>` );
+  }
 }
 
 /*
